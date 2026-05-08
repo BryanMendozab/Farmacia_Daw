@@ -1,0 +1,5 @@
+export {default as FormAdd} from './form'
+export {default as Listado} from './listado'
+export {default as Navbar} from './navbar'
+export {default as VistaInicial} from './vistaInicial'
+export {default as Confirmacion} from './confirmacion'
