@@ -11,8 +11,8 @@ interface Props{
 function FormAdd({insertar, editar, medicamentoEditar}:Props) {
     const [nombre, setNombre] = useState('')
     const [descripcion, setDescripcion] = useState('')
-    const [precio, setPrecio] = useState(0)
-    const [stock, setStock] = useState(0)
+    const [precio, setPrecio] = useState<number | ''>('')
+    const [stock, setStock] = useState<number | ''>('')
     const [tipo, setTipo] = useState('')
 
     useEffect(() => {
@@ -63,38 +63,43 @@ function FormAdd({insertar, editar, medicamentoEditar}:Props) {
 
     return (
         <>
-            <div className='flex flex-col justify-center items-center gap-6 p-8 max-w-7xl w-full mx-auto'>
+            <div className='flex flex-col justify-center items-center gap-4 sm:gap-6 p-4 sm:p-6 md:p-8 max-w-7xl w-full mx-auto'>
 
-                <h1 className='text-2xl font-bold text-gray-800'>Añadir Medicamento</h1>
 
-                <form onSubmit={manejarSubmit} className="flex flex-wrap w-full gap-4 items-end justify-center bg-white p-6 rounded-lg shadow-md">
+                <form onSubmit={manejarSubmit} className="flex flex-wrap w-full gap-3 sm:gap-4 items-end justify-center bg-white p-4 sm:p-6 rounded-lg shadow-md">
                     
-                    <div className='flex flex-col flex-1 min-w-[180px]'>
+                    <div className='flex flex-col flex-1 min-w-[140px] sm:min-w-[180px]'>
                         <label className='text-sm font-medium text-gray-700 mb-1'>Nombre del producto</label>
-                        <input className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="text" placeholder="Nombre del producto" value={nombre} onChange={(e) => setNombre(e.target.value)} required />
+                        <input className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent" type="text" placeholder="Nombre del producto" value={nombre} onChange={(e) => setNombre(e.target.value)} required />
                     </div>
                     
-                    <div className='flex flex-col flex-1 min-w-[180px]'>
+                    <div className='flex flex-col flex-1 min-w-[140px] sm:min-w-[180px]'>
                         <label className='text-sm font-medium text-gray-700 mb-1'>Descripción</label>
-                        <input className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="text" placeholder="Descripción" value={descripcion} onChange={(e)=> setDescripcion(e.target.value)}/>
+                        <input className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent" type="text" placeholder="Descripción" value={descripcion} onChange={(e)=> setDescripcion(e.target.value)}/>
                     </div>
 
-                    <div className='flex flex-col flex-1 min-w-[120px]'>
+                    <div className='flex flex-col flex-1 min-w-[100px] sm:min-w-[120px]'>
                         <label className='text-sm font-medium text-gray-700 mb-1'>Precio</label>
-                        <input className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="number" placeholder="0.00" value={precio} onChange={(e) => setPrecio(Number(e.target.value))} min="0.01" step="0.01" required />
+                        <input className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent" type="number" value={precio} onChange={(e) => {
+        const value = e.target.value
+        setPrecio(value === '' ? '' : Number(value))
+    }} min="0.01" step="0.01" required />
                     </div>
 
-                    <div className='flex flex-col flex-1 min-w-[120px]'>
+                    <div className='flex flex-col flex-1 min-w-[100px] sm:min-w-[120px]'>
                         <label className='text-sm font-medium text-gray-700 mb-1'>Stock</label>
-                        <input className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="number" placeholder="0" value={stock} onChange={(e) => setStock(Number(e.target.value))} min="0" required />
+                        <input className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent" type="number" value={stock} onChange={(e) => {
+        const value = e.target.value
+        setStock(value === '' ? '' : Number(value))
+    }}       min="0" required />
                     </div>
 
-                    <div className='flex flex-col flex-1 min-w-[140px]'>
+                    <div className='flex flex-col flex-1 min-w-[120px] sm:min-w-[140px]'>
                         <label className='text-sm font-medium text-gray-700 mb-1'>Tipo</label>
-                        <input className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="text" placeholder="Tipo" value={tipo} onChange={(e) => setTipo(e.target.value)} />
+                        <input className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent" type="text" placeholder="Tipo" value={tipo} onChange={(e) => setTipo(e.target.value)} />
                     </div>
 
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-md h-fit transition-colors shadow-sm" type="submit">Guardar</button>
+                    <button className="bg-sky-800 hover:bg-sky-900 text-white font-semibold px-4 sm:px-6 py-2 rounded-full h-fit transition-colors shadow-sm w-full sm:w-auto" type="submit">Guardar</button>
 
                 </form>
 

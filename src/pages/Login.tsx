@@ -18,16 +18,17 @@ function Login() {
         }
         
         localStorage.setItem('user_session', JSON.stringify(data))
+        console.log('Usuario logueado:', data)
         alert('¡Login exitoso! Bienvenido.')
-        window.location.href = '/'
+        navigate('/')
     }
 
     return (
-        <div className='min-h-screen flex items-center justify-center bg-gray-100'>
-            <div className='bg-white p-8 rounded-xl shadow-lg w-full max-w-md'>
-                <h1 className='text-2xl font-bold text-gray-800 mb-6 text-center'>Iniciar Sesión</h1>
+        <div className='min-h-screen flex items-center justify-center bg-gray-100 p-4'>
+            <div className='bg-white p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-md'>
+                <h1 className='text-xl sm:text-2xl font-bold text-sky-700 mb-4 sm:mb-6 text-center'>Iniciar Sesión</h1>
                 
-                <form onSubmit={manejarSubmit} className='flex flex-col gap-4'>
+                <form onSubmit={manejarSubmit} className='flex flex-col gap-3 sm:gap-4'>
                     <div className='flex flex-col'>
                         <label className='text-sm font-medium text-gray-700 mb-1'>Correo electrónico</label>
                         <input 
@@ -35,7 +36,7 @@ function Login() {
                             placeholder='correo@ejemplo.com'
                             value={email} 
                             onChange={(e) => setEmail(e.target.value)}
-                            className='border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
+                            className='border border-gray-300 rounded-md p-2 sm:p-3 focus:outline-none focus:ring-2 focus:ring-sky-500'
                             required
                         />
                     </div>
@@ -47,14 +48,14 @@ function Login() {
                             placeholder='********'
                             value={password} 
                             onChange={(e) => setPassword(e.target.value)}
-                            className='border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
+                            className='border border-gray-300 rounded-md p-2 sm:p-3 focus:outline-none focus:ring-2 focus:ring-sky-500'
                             required
                         />
                     </div>
 
                     <button 
                         type='submit'
-                        className='bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md transition-colors mt-2'
+                        className='bg-sky-600 hover:bg-sky-700 text-white font-semibold py-2 sm:py-3 rounded-md transition-colors mt-2'
                     >
                         Entrar
                     </button>

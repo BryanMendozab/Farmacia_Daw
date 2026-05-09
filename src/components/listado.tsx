@@ -29,13 +29,13 @@ function Listado({id, nombre, descripcion, precio, stock, tipo, onEditar, onElim
 
     return(
         <>
-            <div className='flex flex-col bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow flex-1 min-w-[260px] max-w-sm'>
+            <div className='relative flex flex-col bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow flex-1 min-w-[260px] max-w-sm'>
                 {stock <= 5 && (
-                    <div className='bg-red-600 text-white text-center text-xs font-bold py-1 animate-pulse'>
+                    <div  className='absolute top-0 left-0 w-full bg-red-600 text-white text-center text-xs font-bold py-1 animate-pulse z-10'>
                         ¡STOCK BAJO! - Solo quedan {stock} unidades
                     </div>
                 )}
-                <div className={`bg-gradient-to-r ${stock <= 5 ? 'from-red-500 to-red-600' : 'from-gray-500 to-gray-600'} p-4`}>
+                <div className={`bg-gradient-to-r from-sky-600 to-sky-600 p-4 pt-7`}>
                     <h3 className='text-lg font-semibold text-white truncate'>{nombre}</h3>
                     <span className='text-blue-100 text-xs uppercase tracking-wide'>{tipo}</span>
                 </div>
@@ -54,20 +54,20 @@ function Listado({id, nombre, descripcion, precio, stock, tipo, onEditar, onElim
                         </div>
                         <div className='flex flex-col items-end'>
                             <span className='text-xs text-gray-500'>Total</span>
-                            <span className={`text-lg font-semibold ${stock > 0 ? 'text-gray-800' : 'text-red-500'}`}>{(stock * precio).toFixed(2)}</span>
+                            <span className={`text-lg font-semibold ${stock > 0 ? 'text-gray-800' : 'text-red-500'}`}>${(stock * precio).toFixed(2)}</span>
                         </div>
                     </div>
 
                     <div className='flex gap-2 mt-2 pt-3 border-t border-gray-200'>
                         <button 
                             onClick={() => onEditar({id, nombre, descripcion, precio, stock, tipo})}
-                            className='flex-1 bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-medium py-2 px-3 rounded-md transition-colors'
+                            className='flex-1 bg-sky-600 hover:bg-sky-700 text-white text-sm font-medium py-2 px-3 rounded-full transition-colors'
                         >
                             Editar
                         </button>
                         <button 
                             onClick={() => setMostrarConfirmacion(true)}
-                            className='flex-1 bg-red-500 hover:bg-red-600 text-white text-sm font-medium py-2 px-3 rounded-md transition-colors'
+                            className='flex-1 bg-sky-700 hover:bg-sky-800 text-white text-sm font-medium py-2 px-3 rounded-full transition-colors'
                         >
                             Eliminar
                         </button>
